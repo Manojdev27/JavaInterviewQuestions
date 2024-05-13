@@ -23,8 +23,31 @@ public class IsPalindrome {
         }
     }
 
+    public void numberIsPalindrome(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a number: ");
+        int input = scanner.nextInt();
+        int givenNumber = input;
+
+        int reversed = 0;
+
+        while (input!=0){
+            reversed = reversed * 10;
+            reversed = reversed + input % 10;
+            input = input / 10;
+        }
+            if(givenNumber == reversed){
+                System.out.println("The provided number "+ givenNumber + " "+"is Palindrome");
+            }
+            else {
+                System.out.println("The provided number "+ givenNumber +" "+"is not Palindrome");
+            }
+
+    }
     public static void main(String[] args) {
         IsPalindrome palindrome= new IsPalindrome();
         palindrome.isPalindrome();
+        palindrome.numberIsPalindrome();
+
     }
 }
