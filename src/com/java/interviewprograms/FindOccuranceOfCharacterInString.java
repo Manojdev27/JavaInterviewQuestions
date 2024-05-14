@@ -29,7 +29,16 @@ public class FindOccuranceOfCharacterInString {
         System.out.println(lengthAfterReplacing);
         System.out.println(toFind+ " is present "+ (actualLength-lengthAfterReplacing) + " number of times");
     }
+
+    public static long count(String s, char ch){
+        return s.chars().filter(c-> c == ch).count();
+    }
+
+
     public static void main(String[] args) {
+
+        System.out.println(count("Harry Potter", 'r'));
+
 
         FindOccuranceOfCharacterInString findOccuranceOfCharacterInString = new FindOccuranceOfCharacterInString();
         findOccuranceOfCharacterInString.usingIteration();
