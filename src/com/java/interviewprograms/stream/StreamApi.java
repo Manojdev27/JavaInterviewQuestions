@@ -2,6 +2,7 @@ package com.java.interviewprograms.stream;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamApi {
 
@@ -137,6 +138,20 @@ public class StreamApi {
             long pokemonNamesCount = pokemons.stream().map(Pokemon::getName).count();
             System.out.println(pokemonNamesCount);
 
+            System.out.println("Parallel Stream");
+            pokemons.parallelStream().map(Pokemon::getName).sorted().forEach(System.out::println);
+
+
+        System.out.println("Flat Map Names");
+            pokemons.stream().sorted(Comparator.comparing(Pokemon::getName)).flatMap(Stream::of)
+                    .forEach(System.out::println);
+
+
+      List<Character> flatMapGetChar = pokemons.stream().flatMap(s->Stream.of(s.getName().charAt(2))).collect(Collectors.toList());
+        System.out.println(flatMapGetChar);
+
+
+
         List<Employee> employees = new ArrayList<>();
             employees.add(new Employee(1,"Bulbasaur",1000));
             employees.add(new Employee(2,"Ivysaur",2000));
@@ -152,6 +167,19 @@ public class StreamApi {
             List<Employee> empSortedList = employees.stream().sorted((o1,o2)->(int)(o2.getSalary()- o1.getSalary()))
                     .skip(2).limit(1).collect(Collectors.toList());
             System.out.println(empSortedList);
+
+        List<Integer> evenHP = pokemons.stream().map(Pokemon::getHp).filter(hp -> hp %2==0).collect(Collectors.toList());
+        System.out.println("The Even Hp is"+evenHP);
+
+        List<Integer> oddHP = pokemons.stream().map(Pokemon::getHp).filter(hp -> hp %2!=0).collect(Collectors.toList());
+        System.out.println("The Odd Hp is"+oddHP);
+
+
+        List<List<Integer>> listOfListOfInts = Arrays.asList(evenHP,oddHP);
+        System.out.println("The structure before flattening: " +listOfListOfInts);
+
+      List<Integer> evenAndOdd = listOfListOfInts.stream().flatMap(Collection::stream).collect(Collectors.toList());
+        System.out.println("The Structure after flattening: "+evenAndOdd);
 
         }
     }
