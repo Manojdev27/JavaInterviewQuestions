@@ -1,9 +1,8 @@
-package com.java.interviewprograms;
+package com.java.interviewprograms.collections;
 
 import com.java.interviewprograms.stream.Pokemon;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class Collection {
