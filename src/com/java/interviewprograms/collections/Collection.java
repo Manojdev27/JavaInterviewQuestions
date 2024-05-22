@@ -121,7 +121,7 @@ return newList;
         }
 
         pokemonLinkedList.clear();
-        System.out.println("List after clearing the elements: "+pokemonLinkedList);
+        System.out.println("------List after clearing the elements: ------"+pokemonLinkedList);
 
         pokemonLinkedList.add(new Pokemon(84,"Doduo","Normal","Flying",35,85,45,35,35,75));
         pokemonLinkedList.add(new Pokemon(85,"Dodrio","Normal","Ice",60,110,70,60,60,110));
@@ -144,7 +144,7 @@ return newList;
         pokemonLinkedList.add(new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
         pokemonLinkedList.add(new Pokemon(84,"Doduo","Normal","Flying",35,85,45,35,35,75));
 
-        System.out.println("After adding the new elements to the empty list: "+pokemonLinkedList);
+        System.out.println(" -------After adding the new elements to the empty list: ------ "+pokemonLinkedList);
       for(Pokemon pokeLis: pokemonLinkedList){
          System.out.println(pokeLis);
        }
@@ -155,17 +155,25 @@ return newList;
             System.out.println("Using Iterator: "+listIterator.next());
         }
 
+        // Converting Linked List to Hash Set
         HashSet<Pokemon> pokemonHashSet = new HashSet<Pokemon>(pokemonLinkedList);
         System.out.println("PokeMon HashSet: "+pokemonHashSet);
+
+        System.out.println("------Converting Linked List to Hash Set --------");
 
         for (Pokemon newPokeSet: pokemonHashSet){
             System.out.println(newPokeSet);
         }
 
+        // Using For Each with Lambda Expressions and Method References
+
+        System.out.println(" ------Printing the HashSet Using For Each with Lambda Expressions --------");
         pokemonHashSet.forEach(i-> System.out.println(i));
+        System.out.println(" ----- Printing the HashSet Using For Each with Method References ------");
         pokemonHashSet.forEach(System.out::println);
 
 
+        System.out.println(" ----- Printing the HashSet Using Iterator ------");
         System.out.println("Using Iterator: ");
         Iterator iterator = pokemonHashSet.iterator();
         while (iterator.hasNext()){
@@ -193,7 +201,7 @@ return newList;
         System.out.println(newPokeSet);
 
         pokemonHashSet.clear();
-        System.out.println("After removing: "+pokemonHashSet);
+        System.out.println("After removing the elements in the hashset: "+pokemonHashSet);
 
         java.util.Collection<Pokemon> pokemonCollection = new ArrayList();
         pokemonCollection.add(new Pokemon(84,"Doduo","Normal","Flying",35,85,45,35,35,75));
@@ -217,24 +225,24 @@ return newList;
         pokemonCollection.add(new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
         pokemonCollection.add(new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
 
-        System.out.println("Displaying the initial Collection: \n");
+        System.out.println(" ----- Displaying the initial Collection: \n --------");
         System.out.println(pokemonCollection);
 
         HashSet<Pokemon> pokemonsHashSet = new HashSet<Pokemon>(pokemonCollection);
-        System.out.println("\n Displaying the Hashset \n");
+        System.out.println(" ---- \n Displaying the Hashset \n ------");
         System.out.println(pokemonsHashSet);
         pokemonCollection.clear();
 
         pokemonCollection.addAll(pokemonsHashSet);
-        System.out.println("\n Displaying the collection after deleting the duplicate entries \n ");
+        System.out.println("----- \n Displaying the collection after deleting the duplicate entries \n -------");
         pokemonCollection.forEach(System.out::println);
 
-        System.out.println("After adding new values to the hashset: ");
-        for (Pokemon obj: pokemonHashSet){
-            System.out.println(obj);
+        System.out.println(" ----- After adding new values to the hashset: --------");
+        for (Pokemon obj2: pokemonCollection){
+            System.out.println(obj2);
         }
 
-        pokemonHashSet.forEach(i-> System.out.println("The Pokemon Hash Set is: " +i));
+        pokemonCollection.forEach(i-> System.out.println(" -----The Pokemon Hash Set is: ----" +i));
 
 
 
@@ -259,6 +267,7 @@ return newList;
         pokeMap.put(2,new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
         pokeMap.put(3,new Pokemon(6,"Charizard","Fire","Flying",78,84,78,109,85,100));
 
+        System.out.println("------Printing the elements in the HashMap------");
         System.out.println(pokeMap);
         String returnedValue = String.valueOf(pokeMap.put(4,new Pokemon(142,"Aerodactyl","Rock","Flying",80,105,65,60,75,130)));
         System.out.println("Returned Value is "+returnedValue);
@@ -319,6 +328,38 @@ return newList;
             System.out.println(emp.getId()+"-"+emp.geteName()+"-"+emp.getSalary());
         }
 
+        // Enum Set is a set interface handling for Enumeration types.
+        EnumSet<EnumType> enumTypeEnumSet = EnumSet.of(EnumType.NORMAL,EnumType.FIRE,EnumType.WATER,EnumType.ROCK,EnumType.BUG);
+
+Iterator<EnumType> enumTypeIterator = enumTypeEnumSet.iterator();
+        System.out.println("EnumSet : ");
+        while (enumTypeIterator.hasNext()){
+            System.out.println(enumTypeIterator.next());
+        }
+
+        NavigableSet<Pokemon> pokemonTreeSet = new TreeSet<Pokemon>();
+        pokemonTreeSet.add(new Pokemon(214,"Heracross","Bug","Ice",80,125,75,40,95,85));
+        pokemonTreeSet.add(new Pokemon(222,"Corsola","Water","Flying",65,55,95,65,95,35));
+        pokemonTreeSet.add(new Pokemon(228,"Houndour","Dark","Fire",45,60,30,80,50,65));
+        pokemonTreeSet.add(new Pokemon(230,"Kingdra","Water","Psychic",75,95,95,95,95,85));
+        pokemonTreeSet.add(new Pokemon(214,"Heracross","Bug","Ice",80,125,75,40,95,85));
+
+        System.out.println("---- Printing the tree set using for each -----");
+        for (Pokemon pokeTreeSet:pokemonTreeSet){
+            System.out.println(pokeTreeSet);
+        }
+        System.out.println("---- Printing the tree set using method reference for each -----");
+        pokemonTreeSet.forEach(System.out::println);
+
+        System.out.println("---- Printing the tree set using iterator -----");
+        Iterator<Pokemon> treeSetItr = pokemonTreeSet.iterator();
+        while (treeSetItr.hasNext()){
+            System.out.println(treeSetItr.next());
+        }
+
+
+        System.out.println("First Value is: "+pokemonTreeSet.first());
+        System.out.println("Last Value is: "+pokemonTreeSet.last());
     }
 
 }

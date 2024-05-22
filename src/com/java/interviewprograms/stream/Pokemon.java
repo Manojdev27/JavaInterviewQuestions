@@ -1,9 +1,8 @@
 package com.java.interviewprograms.stream;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Pokemon implements Serializable {
+public class Pokemon implements Comparable<Pokemon>{
     private int id;
     private String name;
     private String type1;
@@ -31,6 +30,7 @@ public class Pokemon implements Serializable {
         this.speed = speed;
     }
 
+
     public int getId() {
         return id;
     }
@@ -47,6 +47,7 @@ public class Pokemon implements Serializable {
         this.name = name;
     }
 
+
     public String getType1() {
         return type1;
     }
@@ -54,6 +55,7 @@ public class Pokemon implements Serializable {
     public void setType1(String type1) {
         this.type1 = type1;
     }
+
 
     public String getType2() {
         return type2;
@@ -63,6 +65,7 @@ public class Pokemon implements Serializable {
         this.type2 = type2;
     }
 
+
     public int getHp() {
         return hp;
     }
@@ -70,6 +73,7 @@ public class Pokemon implements Serializable {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
 
     public int getAttack() {
         return attack;
@@ -79,6 +83,7 @@ public class Pokemon implements Serializable {
         this.attack = attack;
     }
 
+
     public int getDefense() {
         return defense;
     }
@@ -86,6 +91,7 @@ public class Pokemon implements Serializable {
     public void setDefense(int defense) {
         this.defense = defense;
     }
+
 
     public int getSpecialAttack() {
         return specialAttack;
@@ -95,6 +101,7 @@ public class Pokemon implements Serializable {
         this.specialAttack = specialAttack;
     }
 
+
     public int getSpecialDefense() {
         return specialDefense;
     }
@@ -102,6 +109,7 @@ public class Pokemon implements Serializable {
     public void setSpecialDefense(int specialDefense) {
         this.specialDefense = specialDefense;
     }
+
 
     public int getSpeed() {
         return speed;
@@ -140,5 +148,11 @@ public class Pokemon implements Serializable {
 
 
     }
+
+   @Override
+   public int compareTo(Pokemon args) {
+        return this.name.compareTo(args.name);
+    }
+
 }
 
