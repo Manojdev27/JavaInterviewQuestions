@@ -1,6 +1,9 @@
 package com.java.interviewprograms.stream;
 
-public class Employee {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Employee implements Serializable {
 
     private int id;
     private String eName;
@@ -47,5 +50,17 @@ public class Employee {
                 ", eName='" + eName + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee employee)) return false;
+        return getId() == employee.getId() && getSalary() == employee.getSalary() && Objects.equals(geteName(), employee.geteName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), geteName(), getSalary());
     }
 }

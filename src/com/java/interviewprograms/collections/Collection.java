@@ -295,19 +295,29 @@ return newList;
         s = pokeMap.keySet();
         System.out.println(s);
 
-        HashSet<Employee> employee = new HashSet<Employee>();
-        employee.add(new Employee(1,"Bulbasaur",1000));
-        employee.add(new Employee(2,"Ivysaur",2000));
-        employee.add(new Employee(3,"Venusaur",3000));
-        employee.add(new Employee(4,"Charmander",4000));
-        employee.add(new Employee(5,"Charmeleon",5000));
-        employee.add(new Employee(6,"Charizard",6000));
-        employee.add(new Employee(7,"Pikachu",7000));
-        employee.add(new Employee(1,"Bulbasaur",1000));
+        Employee employee1 = new Employee(1,"Bulbasaur",1000);
+        Employee employee2 = new Employee(2,"Ivysaur",2000);
+        Employee employee3 = new Employee(3,"Venusaur",3000);
+        Employee employee4 = new Employee(4,"Charmander",4000);
+        Employee employee5 = new Employee(5,"Charmeleon",5000);
+        Employee employee6 = new Employee(6,"Charizard",6000);
+        Employee employee7 = new Employee(7,"Pikachu",7000);
+        Employee employee8 = new Employee(1,"Bulbasaur",1000);
 
-        employee.forEach(e-> System.out.println(e));
+        HashSet<Employee> employeeHashSet = new HashSet<Employee>();
 
+        employeeHashSet.add(employee1);
+        employeeHashSet.add(employee2);
+        employeeHashSet.add(employee3);
+        employeeHashSet.add(employee4);
+        employeeHashSet.add(employee5);
+        employeeHashSet.add(employee6);
+        employeeHashSet.add(employee7);
+        employeeHashSet.add(employee8);
 
+        for (Employee emp: employeeHashSet){
+            System.out.println(emp.getId()+"-"+emp.geteName()+"-"+emp.getSalary());
+        }
 
     }
 
