@@ -47,7 +47,7 @@ public class StreamApi {
             pokemons.stream().sorted((e1,e2) -> e1.getName().compareTo(e2.getName())).forEach(System.out::println);
 
             System.out.println("----- Sort Pokemons By Id -----");
-            List<Pokemon> sortById = pokemons.stream().sorted((e1,e2) -> (int) e1.getNumber()-e2.getNumber()).collect(Collectors.toList());
+            List<Pokemon> sortById = pokemons.stream().sorted((e1,e2) -> (int) e1.getId()-e2.getId()).collect(Collectors.toList());
             System.out.println(sortById);
 
             System.out.println("----- Filtering the Pokemons By having Even HP: -----");
@@ -61,7 +61,7 @@ public class StreamApi {
             System.out.println(mapPokemon);
 
             System.out.println("----- Get the Electric pokemon Names in sorted by numbers in descending order -----");
-            List<String> electricPokemon = pokemons.stream().filter(t-> t.getType1().equals("Electric")).sorted(Comparator.comparing(Pokemon::getNumber).reversed()).map(Pokemon::getName).collect(Collectors.toList());
+            List<String> electricPokemon = pokemons.stream().filter(t-> t.getType1().equals("Electric")).sorted(Comparator.comparing(Pokemon::getId).reversed()).map(Pokemon::getName).collect(Collectors.toList());
             System.out.println(electricPokemon);
 
             System.out.println("----- Get the flying pokemon names in descending order -----");
@@ -180,6 +180,7 @@ public class StreamApi {
 
       List<Integer> evenAndOdd = listOfListOfInts.stream().flatMap(Collection::stream).collect(Collectors.toList());
         System.out.println("The Structure after flattening: "+evenAndOdd);
+
 
         }
     }
