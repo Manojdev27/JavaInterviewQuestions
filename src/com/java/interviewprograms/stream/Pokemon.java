@@ -1,7 +1,7 @@
 package com.java.interviewprograms.stream;
 
 public class Pokemon {
-    private int number;
+    private int id;
     private String name;
     private String type1;
     private String type2;
@@ -15,8 +15,8 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(int number, String name, String type1, String type2, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed) {
-        this.number = number;
+    public Pokemon(int id, String name, String type1, String type2, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed) {
+        this.id = id;
         this.name = name;
         this.type1 = type1;
         this.type2 = type2;
@@ -28,12 +28,12 @@ public class Pokemon {
         this.speed = speed;
     }
 
-    public int getNumber() {
-        return number;
+    public int getId() {
+        return id;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -111,7 +111,7 @@ public class Pokemon {
     @Override
     public String toString() {
         return "Pokemon{" +
-                "number=" + number +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", type1='" + type1 + '\'' +
                 ", type2='" + type2 + '\'' +
