@@ -1,6 +1,9 @@
 package com.java.interviewprograms.stream;
 
-public class Pokemon {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Pokemon implements Serializable {
     private int id;
     private String name;
     private String type1;
@@ -109,6 +112,18 @@ public class Pokemon {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pokemon pokemon)) return false;
+        return getId() == pokemon.getId() && getHp() == pokemon.getHp() && getAttack() == pokemon.getAttack() && getDefense() == pokemon.getDefense() && getSpecialAttack() == pokemon.getSpecialAttack() && getSpecialDefense() == pokemon.getSpecialDefense() && getSpeed() == pokemon.getSpeed() && Objects.equals(getName(), pokemon.getName()) && Objects.equals(getType1(), pokemon.getType1()) && Objects.equals(getType2(), pokemon.getType2());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getType1(), getType2(), getHp(), getAttack(), getDefense(), getSpecialAttack(), getSpecialDefense(), getSpeed());
+    }
+
+    @Override
     public String toString() {
         return "Pokemon{" +
                 "id=" + id +
@@ -122,6 +137,8 @@ public class Pokemon {
                 ", specialDefense=" + specialDefense +
                 ", speed=" + speed +
                 '}';
+
+
     }
 }
 
