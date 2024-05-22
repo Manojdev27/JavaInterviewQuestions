@@ -1,8 +1,9 @@
 package com.java.interviewprograms.stream;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Pokemon implements Comparable<Pokemon>{
+public class Pokemon implements Serializable, Comparable<Pokemon>{
     private int id;
     private String name;
     private String type1;
