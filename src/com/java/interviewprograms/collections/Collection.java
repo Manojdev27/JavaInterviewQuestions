@@ -360,6 +360,55 @@ Iterator<EnumType> enumTypeIterator = enumTypeEnumSet.iterator();
 
         System.out.println("First Value is: "+pokemonTreeSet.first());
         System.out.println("Last Value is: "+pokemonTreeSet.last());
+
+        System.out.println("----  Linked Hash Map -------");
+
+        LinkedHashMap<Integer,Pokemon> pokemonLinkedHashMap = new LinkedHashMap<Integer,Pokemon>();
+        pokemonLinkedHashMap.put(1,new Pokemon(145,"Zapdos","Electric","Flying",90,90,85,125,90,100));
+        pokemonLinkedHashMap.put(2,new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
+        pokemonLinkedHashMap.put(3,new Pokemon(6,"Charizard","Fire","Flying",78,84,78,109,85,100));
+
+        Set<Integer> keys = pokemonLinkedHashMap.keySet();
+        for (Integer key: keys){
+            System.out.println(key + "----"+pokemonLinkedHashMap.get(key));
+        }
+
+        Set<Map.Entry<Integer, Pokemon>> entrySet = pokemonLinkedHashMap.entrySet();
+
+        Iterator<Map.Entry<Integer, Pokemon>> iterator3 = entrySet.iterator();
+        System.out.println("LinkedHashMap Entries: ");
+        while (iterator3.hasNext()){
+            System.out.println(iterator3.next());
+        }
+
+        int size = 0;
+        for (Map.Entry mapElement: pokemonLinkedHashMap.entrySet()){
+            size++;
+        }
+        System.out.println("The Size of the Linked Hash Map is: "+size);
+
+        int size1 = pokemonLinkedHashMap.size();
+        System.out.println("The Size of the Linked Hash Map by using size() method: "+size1);
+
+
+        for (Map.Entry<Integer,Pokemon> iteratorokemonEntry:pokemonLinkedHashMap.entrySet()){
+            System.out.println(iteratorokemonEntry.getValue()+",");
+        }
+
+        LinkedHashMap<Integer,Pokemon> pokemonLinkedHashMap1 = new LinkedHashMap<Integer,Pokemon>();
+        pokemonLinkedHashMap1.put(3,new Pokemon(6,"Charizard","Fire","Flying",78,84,78,109,85,100));
+        pokemonLinkedHashMap1.put(1,new Pokemon(145,"Zapdos","Electric","Flying",90,90,85,125,90,100));
+        pokemonLinkedHashMap1.put(2,new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
+
+        Map<Integer,Pokemon> map = new TreeMap<>(pokemonLinkedHashMap1);
+        for (Integer skey:map.keySet()){
+            System.out.println("Key -> " +skey +":Value -> " + pokemonLinkedHashMap1.get(skey));
+        }
+
+
+
     }
+
+
 
 }
