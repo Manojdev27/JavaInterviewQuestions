@@ -1,12 +1,28 @@
 package com.java.interviewprograms.stream;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.stream.*;
 
 public class StreamApi {
 
+    public static <T>Stream<T> getSliceOfStream(Stream<T> stream,int startIndex, int endIndex){
+        return stream.skip(startIndex).limit(endIndex-startIndex + 1);
+    }
+
+    public static Set<Character> convertStringToCharListAndRemoveDuplicates(String str){
+        Set<Character> chars = str.chars().mapToObj(e->(char)e).collect(Collectors.toSet());
+        return chars;
+
+    }
+
+    public static List<Character> convertStringToCharList(String str){
+        List<Character> chars = new ArrayList<>();
+
+        for (char ch:str.toCharArray()){
+            chars.add(ch);
+        }
+        return chars;
+    }
     public static void main(String[] args) {
             List<Integer> list = Arrays.asList(10,9,8,7,5,4,2);
             System.out.println("The Sorted Stream is: ");
@@ -147,9 +163,11 @@ public class StreamApi {
             pokemons.stream().sorted(Comparator.comparing(Pokemon::getName)).flatMap(Stream::of)
                     .forEach(System.out::println);
 
-
       List<Character> flatMapGetChar = pokemons.stream().flatMap(s->Stream.of(s.getName().charAt(2))).collect(Collectors.toList());
         System.out.println(flatMapGetChar);
+
+
+
 
 
 
@@ -216,7 +234,45 @@ public class StreamApi {
         System.out.println(intSummaryStatistics);
 
 
+        List<Integer> list1 = new ArrayList<>();
+        for (int i = 10; i <=20 ; i++)
+            list1.add(i);
+        Stream<Integer> intStream = list1.stream();
+        System.out.println("List: " +list1);
+        Stream<Integer> sliceOfIntStream =  getSliceOfStream(intStream, 5,10);
+        System.out.println("\nSlice Of Stream: ");
+        sliceOfIntStream.forEach(System.out::println);
 
+String str = "Pokemon";
+List<Character> characters = convertStringToCharList(str);
+        System.out.println(characters);
+        Set<Character> characters1 = convertStringToCharListAndRemoveDuplicates(str);
+        System.out.println(characters1);
+
+Stream<String> stream1 = Stream.of("Pokemon");
+Stream<String> stream2 = Stream.of("Gotta catch 'em all");;
+Stream.concat(stream1,stream2).forEach(System.out::println);
+
+        System.out.println("Convert to Long Stream");
+        pokemons.stream().map(Pokemon::getSpecialAttack).mapToLong(n->Long.parseLong(String.valueOf(n))).
+        forEach(System.out::println);
+
+        System.out.println("Returning the number of one bits in binary representation of string length");
+        pokemons.stream().map(Pokemon::getName).mapToLong(s->Long.bitCount(s.length())).
+                forEach(System.out::println);
+
+        LongStream longStream = LongStream.generate(() ->{return (long) (Math.random() * 1000);});
+        longStream.limit(7).forEach(System.out::println);
+
+        System.out.println("Long Summary Statistics");
+        LongStream longStream1 = LongStream.range(100,200);
+        LongSummaryStatistics longSummaryStatistics = longStream1.summaryStatistics();
+        System.out.println(longSummaryStatistics);
+
+        System.out.println("Double Summary Statistics");
+        DoubleStream doubleStream = DoubleStream.of(200.00,300.00,500.00,434.54,876.98,344.54);
+        DoubleSummaryStatistics doubleSummaryStatistics = doubleStream.summaryStatistics();
+        System.out.println(doubleSummaryStatistics);
 
 
     }
