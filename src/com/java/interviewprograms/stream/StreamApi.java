@@ -1,6 +1,9 @@
 package com.java.interviewprograms.stream;
 
+import com.java.interviewprograms.Sorting;
+
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.*;
 
 public class StreamApi {
@@ -274,6 +277,29 @@ Stream.concat(stream1,stream2).forEach(System.out::println);
         DoubleSummaryStatistics doubleSummaryStatistics = doubleStream.summaryStatistics();
         System.out.println(doubleSummaryStatistics);
 
+        System.out.println("---For Each Orderd------");
+List<Integer> list2 = Arrays.asList(10,9,7,5,12,9,15,20);
+        list2.stream().forEachOrdered(System.out::println);
 
+        List<Integer> list3 = Arrays.asList(11,12,15,17,19,20);
+
+        Stream<List<Integer>> s1 = Stream.of(list2);
+        Stream<List<Integer>> s2 = Stream.of(list3);
+
+        System.out.println("-----Concatenate Two Stream--------");
+        Stream.concat(s1,s2).distinct().forEach(ele-> System.out.println(ele));
+
+        System.out.println("---Collections.groupingBy------");
+        Map<Integer,Long> result = list2.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println(result);
+
+        Map<Integer, List<Pokemon>> pokeNameByAsc = pokemons.stream().collect(Collectors.groupingBy(Pokemon::getHp));
+        System.out.println(pokeNameByAsc);
+
+DoubleStream doubleStream1 = DoubleStream.of(21.009,12.009,24.88,33.55);
+
+        DoubleStream doubleStream2 = DoubleStream.of(31.009,41.009,23.88,55.55,21.009);
+
+        DoubleStream.concat(doubleStream1,doubleStream2).distinct().forEach(ele-> System.out.println(ele));
     }
     }
