@@ -59,6 +59,15 @@ public class StreamApi {
             pokemons.add(new Pokemon(145,"Zapdos","Electric","Flying",90,90,85,125,90,100));
             pokemons.add(new Pokemon(172,"Pichu","Electric",null,20,40,15,35,35,60));
             pokemons.add(new Pokemon(131,"Lapras","Water","ice",130,85,80,85,95,60));
+            pokemons.add(new Pokemon(65,"Alakazam","Psychic",null,55,50,45,135,95,120));
+            pokemons.add(new Pokemon(142,"Aerodactyl","Rock","Flying",80,105,65,60,75,130));
+            pokemons.add(new Pokemon(144,"Articuno","Ice","Flying",90,85,100,95,125,85));
+            pokemons.add(new Pokemon(190,"Aipom","Normal",null,55,70,55,40,55,85));
+            pokemons.add(new Pokemon(101,"Electrode","Electric",null,60,50,70,80,80,150));
+            pokemons.add(new Pokemon(125,"Electabuzz","Electric",null,65,83,57,95,85,105));
+            pokemons.add(new Pokemon(133,"Eevee","Normal",null,55,55,50,45,65,55));
+            pokemons.add(new Pokemon(244,"Entei","Fire",null,115,115,85,90,75,100));
+
 
             // intermediate Operations Filter, Sort, Map
            // terminal Operations - forEach(), collect(), match(), count(), reduce()
@@ -301,5 +310,39 @@ DoubleStream doubleStream1 = DoubleStream.of(21.009,12.009,24.88,33.55);
         DoubleStream doubleStream2 = DoubleStream.of(31.009,41.009,23.88,55.55,21.009);
 
         DoubleStream.concat(doubleStream1,doubleStream2).distinct().forEach(ele-> System.out.println(ele));
+
+        List<String> listOfStrings = new ArrayList<>();
+        listOfStrings.add("Bulbasaur");
+        listOfStrings.add("Charmander");
+        listOfStrings.add("Venasaur");
+        listOfStrings.add("Charizard");
+
+        Map<Integer, List<String>> result2 = listOfStrings.stream().collect(Collectors.groupingBy(String::length));
+        System.out.println(result2);
+
+      List<Employee> highestSalary = (List<Employee>) employees.stream()
+              .sorted((w1,w2) -> w2.getSalary()- w1.getSalary()).limit(1).collect(Collectors.toList());
+        System.out.println(highestSalary);
+
+        List<Pokemon> highestHp = pokemons.stream().sorted((o1,o2) ->o2.getHp()-o1.getHp())
+                .limit(1).collect(Collectors.toList());
+        System.out.println(highestHp);
+
+
+       IntSummaryStatistics intSummaryStatistics1 = pokemons.stream().map(Pokemon::getHp).filter(i-> i>10).mapToInt(Integer::intValue).summaryStatistics();
+        System.out.println(intSummaryStatistics1.getAverage());
+        System.out.println(intSummaryStatistics1.getCount());
+
+        System.out.println("------ filter name using starts with---------- ");
+        pokemons.stream().map(Pokemon::getName).filter(i->i.startsWith("P")).forEach(System.out::println);
+
+        System.out.println("------ filter name using ends with---------- ");
+        pokemons.stream().map(Pokemon::getName).filter(i->i.endsWith("e")).forEach(System.out::println);
+
+        System.out.println("------ filter name using contains---------- ");
+        pokemons.stream().map(Pokemon::getName).filter(i->i.contains("A")).forEach(System.out::println);
+
+        System.out.println("------ filter Distinct HP---------- ");
+        pokemons.stream().map(Pokemon::getHp).distinct().forEach(System.out::println);
     }
     }
