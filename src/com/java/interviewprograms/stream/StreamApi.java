@@ -31,6 +31,21 @@ public class StreamApi {
         int size = 1;
         return Stream.generate(String::new).limit(size).map(s->N).collect(Collectors.toList());
     }
+
+    public static <K,V> Stream<Map.Entry<K,V>> convertMapToStream(Map<K,V> map){
+        return map.entrySet().stream();
+
+    }
+
+    public static <T> T firstElementInStream(Stream<T> stream){
+        T firstElement = stream.reduce((first,second)->first).orElse(null);
+        return firstElement;
+    }
+
+    public static <T> T lastElementInStream(Stream<T> stream){
+        T lastElement = stream.reduce((first,second)->second).orElse(null);
+        return lastElement;
+    }
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(10, 9, 8, 7, 5, 4, 2);
         System.out.println("The Sorted Stream is: ");
@@ -403,5 +418,38 @@ public class StreamApi {
         Set<String> collectAsSet = strSet.collect(Collectors.toSet());
         System.out.println(collectAsSet);
 
+        System.out.println("-------Convert Map into a Stream ----------");
+        Map<Integer,String> pokeCharacters = new HashMap<>();
+        pokeCharacters.put(1,"Ash");
+        pokeCharacters.put(2,"Misty");
+        pokeCharacters.put(3,"Brock");
+        pokeCharacters.put(4,"Gary");
+        pokeCharacters.put(5,"Dawn");
+        pokeCharacters.put(6,"Pikachu");
+        pokeCharacters.put(6,"Axew");
+        pokeCharacters.put(7,null);
+        pokeCharacters.put(null,null);
+        pokeCharacters.put(null,"Entei");
+
+        Stream<Map.Entry<Integer,String>> stream = convertMapToStream(pokeCharacters);
+        System.out.println(Arrays.toString(stream.toArray()));
+
+        System.out.println("-------Print first and last Elements in a stream -------");
+        Stream<String> stream3 = Stream.of("Entei","Suicune","Raikou");
+        System.out.println("First Element: "+firstElementInStream(stream3));
+        Stream<String> stream4 = Stream.of("Moltres","Zapdos","Articuno");
+        System.out.println("Last Element: " +lastElementInStream(stream4));
+        Stream stream5 = pokemons.stream().sorted();
+        System.out.println("---------First Element in an Pokemon Object:-----------" );
+        System.out.println(firstElementInStream(stream5));
+        Stream stream6 = pokemons.stream().sorted();
+        System.out.println("---------Last Element in an Pokemon Object:----------" );
+        System.out.println(lastElementInStream(stream6));
+        Stream stream7 = pokemons.stream().sorted(Collections.reverseOrder());
+        System.out.println("---------First Element in an Pokemon Object in reversed Order:------" );
+        System.out.println(firstElementInStream(stream7));
+        Stream stream8 = pokemons.stream().sorted(Collections.reverseOrder());
+        System.out.println("---------Last Element in an Pokemon Object in reversed Order:------" );
+        System.out.println(lastElementInStream(stream8));
     }
 }
