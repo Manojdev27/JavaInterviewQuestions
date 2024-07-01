@@ -452,7 +452,16 @@ public class StreamApi {
         System.out.println("---------Last Element in an Pokemon Object in reversed Order:------" );
         System.out.println(lastElementInStream(stream8));
 
-        
+        Integer[] sumOfSquares = {1,2,3,4,5,6,7,8,9};
+        Stream<Integer> stream9 =  Arrays.stream(sumOfSquares);
+          stream9.skip(5).forEach(System.out::println);
+
+        System.out.println("------------Print based on Length of descending order ----------");
+          String[] sortBasedOnLength = {"Pokemon","Ash", "Misty","Brock","Pikachu","Oak"};
+          Stream<String> stream10 = Arrays.stream(sortBasedOnLength);
+          stream10.sorted((str1,str2) ->str2.length()-str1.length()).collect(Collectors.toList())
+                  .forEach(System.out::println);
+
     }
 
 
